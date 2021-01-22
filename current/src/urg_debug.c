@@ -1,10 +1,12 @@
 /*!
   \~japanese
   \brief URG ƒZƒ“ƒT—p‚Ì•â•ŠÖ”
-
+  \~english Auxiliary functions (read and write raw data)
+  \brief 
+  \~
   \author Satofumi KAMIMURA
 
-  $Id: urg_utils.c,v da778fd816c2 2011/01/05 20:02:06 Satofumi $
+  $Id$
 */
 
 #include "urg_c/urg_debug.h"

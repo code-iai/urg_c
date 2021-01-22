@@ -3,17 +3,20 @@
 
 /*!
   \file
+  \~japanese
   \brief OS の検出
-
+  \~english
+  \brief Detects the current OS
+  \~
   \author Satofumi KAMIMURA
 
-  $Id: urg_detect_os.h,v 0caa22c18f6b 2010/12/30 03:36:32 Satofumi $
+  $Id$
 */
 
-#if defined(_MSC_VER) || defined(__CYGWIN__) || defined(__MINGW32__)
+#if defined(_WIN32)
 #define URG_WINDOWS_OS
 
-#if defined(_MSC_VER)
+#if defined(_MSC_VER) || defined(__BORLANDC__)
 #define URG_MSC
 #endif
 
@@ -21,7 +24,8 @@
 #define URG_LINUX_OS
 
 #else
-// 検出できないときを、Mac 扱いにしてしまう
+// \~japanese 検出できないときを、Mac 扱いにしてしまう
+// \~english If cannot detect the OS, assumes it is a Mac
 #define URG_MAC_OS
 #endif
 

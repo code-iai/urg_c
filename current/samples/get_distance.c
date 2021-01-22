@@ -1,15 +1,16 @@
 /*!
   \~japanese
   \example get_distance.c 距離データを取得する
-
+  \~english
+  \example get_distance.c Obtains distance data
   \~
   \author Satofumi KAMIMURA
 
-  $Id: get_distance.c,v 586c4fa697ef 2011/01/24 08:50:01 Satofumi $
+  $Id$
 */
 
-#include "urg_c/urg_sensor.h"
-#include "urg_c/urg_utils.h"
+#include "urg_sensor.h"
+#include "urg_utils.h"
 #include "open_urg_sensor.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -23,6 +24,7 @@ static void print_data(urg_t *urg, long data[], int data_n, long time_stamp)
     (void)data_n;
 
     // \~japanese 前方のデータのみを表示
+    // \~english Shows only the front step
     front_index = urg_step2index(urg, 0);
     printf("%ld [mm], (%ld [msec])\n", data[front_index], time_stamp);
 
@@ -34,6 +36,7 @@ static void print_data(urg_t *urg, long data[], int data_n, long time_stamp)
     long max_distance;
 
     // \~japanese 全てのデータの X-Y の位置を表示
+    // \~english Prints the X-Y coordinates for all the measurement points
     urg_distance_min_max(urg, &min_distance, &max_distance);
     for (i = 0; i < data_n; ++i) {
         long l = data[i];
@@ -62,7 +65,6 @@ int main(int argc, char *argv[])
     urg_t urg;
     long *data = NULL;
     long time_stamp;
-    unsigned long long system_time_stamp;
     int n;
     int i;
 
@@ -77,16 +79,18 @@ int main(int argc, char *argv[])
     }
 
     // \~japanese データ取得
+    // \~english Gets measurement data
 #if 0
     // \~japanese データの取得範囲を変更する場合
+    // \~english Case where the measurement range (start/end steps) is defined
     urg_set_scanning_parameter(&urg,
                                urg_deg2step(&urg, -90),
                                urg_deg2step(&urg, +90), 0);
 #endif
 
-    urg_start_measurement(&urg, URG_DISTANCE, CAPTURE_TIMES, 0);
+    urg_start_measurement(&urg, URG_DISTANCE, URG_SCAN_INFINITY, 0);
     for (i = 0; i < CAPTURE_TIMES; ++i) {
-        n = urg_get_distance(&urg, data, &time_stamp, &system_time_stamp);
+        n = urg_get_distance(&urg, data, &time_stamp);
         if (n <= 0) {
             printf("urg_get_distance: %s\n", urg_error(&urg));
             free(data);
@@ -97,6 +101,7 @@ int main(int argc, char *argv[])
     }
 
     // \~japanese 切断
+    // \~english Disconnects
     free(data);
     urg_close(&urg);
 

@@ -1,10 +1,13 @@
 /*!
   \file
+  \~japanese
   \brief ’ÊM‚Ìˆ—
-
+  \~english
+  \brief Communication related functions
+  \~
   \author Satofumi KAMIMURA
 
-  $Id: urg_connection.c,v 0caa22c18f6b 2010/12/30 03:36:32 Satofumi $
+  $Id$
 */
 
 #include "urg_c/urg_connection.h"
